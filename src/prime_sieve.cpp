@@ -75,7 +75,7 @@ void save_primes(){
         std::vector<uint8_t> data;
         uint64_t P = primes[i];
         int NB = num_bytes(primes[i]);
-        assert(NB>0&&NB<=8)
+        assert(NB>0&&NB<=8);
         for( int j = 0; j < NB; j++ )
             data.push_back( ( P >> (8*(NB-(j+1))) ) & 0xFF);
         append_file("primes/primes_"+std::to_string(NB)+".bin",data);
