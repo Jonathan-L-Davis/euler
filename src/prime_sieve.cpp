@@ -28,10 +28,10 @@ void load_primes(){
         
         auto file = load_file("primes/primes_"+std::to_string(i)+".bin");
         
-        for(int j = 0; j < file.size(); j+= i){
+        for(int64_t j = 0; j < file.size(); j+= i){
             uint64_t n = 0;
             
-            for(int k = 0; k < i; k++ ){
+            for(int64_t k = 0; k < i; k++ ){
                 n <<= 8;
                 n |= file[j+k];
             }
@@ -104,7 +104,7 @@ int main(int argc, char** argv){
     std::cout << "Starting at: " << start << std::hex << " : 0x" << start << std::dec << "\n";
     
     assert(start&1 && "Uh oh, why are we starting on an even number?");
-    for( uint64_t i = start; i < 0xFFFF'FFFF; i+=2){
+    for( uint64_t i = start; i < 0xFF'FFFF'FFFF; i+=2){
         bool is_prime = true;
         
         // should always be greater than the real sqrt & is a relatively accurate approx for how cheap it is.
@@ -128,7 +128,7 @@ int main(int argc, char** argv){
         
         if( is_prime ) primes.push_back(i);
         
-        constexpr uint64_t group_size = 4096*4;
+        constexpr uint64_t group_size = 4096*16;
         if( saved+group_size <= primes.size()){
             save_primes();
             saved = primes.size();

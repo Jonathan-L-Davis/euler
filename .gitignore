@@ -3,3 +3,6 @@
 !src/
 !build.sh
 !README.md
+!home.html
+!update_site.sh
+!website_workers.sh
